@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search and Embed YouTube Video</title>
+  <title>Search and Embed YouTube Videos</title>
 </head>
 <body>
   <h1>YouTube Video Search and Embed</h1>
@@ -12,7 +12,11 @@
   <input type="text" id="search-query" placeholder="Search for a video">
   <button onclick="searchVideos()">Search</button>
   
-  <div id="video-container"></div> <!-- Where the video will be embedded -->
+  <!-- Container for embedded videos -->
+  <div id="video-container"></div>
+
+  <!-- Load More button -->
+  <button id="load-more" style="display: none;" onclick="loadMoreVideos()">Load More</button>
   
   <script src="script.js"></script>
 </body>
