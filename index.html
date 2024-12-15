@@ -3,24 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search and Embed YouTube Videos</title>
+  <title>YouTube Search with Fabric.js</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    #canvas-container {
+      position: relative;
+      display: inline-block;
+    }
+    iframe {
+      position: absolute;
+      pointer-events: none; /* Makes iframe unclickable */
+    }
+  </style>
 </head>
 <body>
-  <h1>YouTube Video Search and Embed</h1>
-  
-  <!-- Input for searching videos -->
-  <input type="text" id="search-query" placeholder="Search for a video">
+  <h1>YouTube Search with Fabric.js</h1>
+  <input type="text" id="searchInput" placeholder="Search for videos..." style="width: 300px; padding: 10px;">
   <button onclick="searchVideos()">Search</button>
   
-  <!-- Container for embedded videos -->
-  <div id="video-container"></div>
+  <div id="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
 
-  <!-- Load More button -->
-  <button id="load-more" style="display: none;" onclick="loadMoreVideos()">Load More</button>
-  <iframe width="420" height="315"
-src="https://www.youtube.com/embed/tgbNymZ7vqY">
-</iframe>
+  <script>
+    const YOUTUBE_API_KEY = 'AIzaSyBm7ICg36Kcqo0i5Eo_H_14tYuSMBWxDFE'; // Your API key
+    const API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-  <script src="script.js"></script>
+    const canvas = new fabric.Canvas('canvas');
+    canvas.setWidth(800);
+    canvas.setHeight(600);
+    canvas.backgroundColor = '#f3f3f3';
+    canvas.renderAll();
+
+    function searchVideos() {
+      const query = document.getElementById('searchInput').value;
+      if (!query) {
+        alert('Please enter a search query.');
+        return;
+      }
+
+      fetch(`${API_URL}?part=snippet&type=video&q=${encodeURIComponent(query)}&key=${YOUTUBE_API_KEY}`)
+        .then(response => response.json())
+        .then(data => displayVideos(data.items))
+        .catch(err => console.error('Error fetching YouTube API:', err));
+    }
+
+    function displayVideos(videos) {
+      // Clear canvas
+      canvas.clear();
+      canvas.backgroundColor = '#f3f3f3';
+      canvas.renderAll();
+
+      videos.forEach((video, index) => {
+        const videoId = video.id.videoId;
+        const iframeUrl = `https://www.youtube.com/embed/${videoId}`;
+
+        // Create an iframe element for the video
+        const iframe = document.createElement('iframe');
+        iframe.src = iframeUrl;
+        iframe.width = '240';
+        iframe.height = '135';
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+
+        // Style iframe for overlay and position it
+        iframe.style.position = 'absolute';
+        iframe.style.left = `${index * 250}px`; // Offset each iframe horizontally
+        iframe.style.top = '50px';
+
+        // Append iframe to the container
+        document.getElementById('canvas-container').appendChild(iframe);
+
+        // Add a Fabric.js rectangle to represent the iframe's location
+        const rect = new fabric.Rect({
+          left: index * 250,
+          top: 50,
+          width: 240,
+          height: 135,
+          fill: 'rgba(0,0,0,0.1)',
+          stroke: '#333',
+          strokeWidth: 1,
+          selectable: false
+        });
+
+        canvas.add(rect);
+      });
+    }
+  </script>
 </body>
 </html>
