@@ -49,7 +49,7 @@ function embedVideos(videos) {
     iframe.height = "315";
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     iframe.allowFullscreen = true;
 
     // Append the iframe to the container in the HTML
