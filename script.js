@@ -37,7 +37,7 @@ async function searchVideos() {
 // Function to embed multiple videos using iframe
 function embedVideos(videos) {
   const videoContainer = document.getElementById('video-container');
-  videoContainer.innerHTML = '';  // Clear any previous videos embedded
+//  videoContainer.innerHTML = '';  // Clear any previous videos embedded
 
   // Loop through the video results and create an iframe for each video
   videos.forEach(video => {
