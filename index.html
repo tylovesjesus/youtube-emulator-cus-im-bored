@@ -3,21 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ty's youtube emulator</title>
+  <title>Ty's YouTube Emulator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>youtube emulator</h1>
-  
-  <!-- Input for searching videos -->
-  <input type="text" id="search-query" placeholder="Search for a video">
-  <button onclick="searchVideos()">Search</button>
-  
-  <!-- Container for embedded videos -->
-  <div id="video-container"></div>
+  <h1>YouTube Emulator</h1>
 
-  <!-- Load More button -->
-  <button id="load-more" style="display: none;" onclick="loadMoreVideos()">Load More</button>
-  
+  <!-- Search Bar and Button Container -->
+  <div class="search-container">
+    <div class="search-box">
+      <input type="text" id="search-query" placeholder="Search for a video">
+      <button onclick="searchVideos()">Search</button>
+    </div>
+  </div>
+
+  <!-- Main Content Container for Videos and Load More button -->
+  <div class="main-content">
+    <!-- Container for embedded YouTube videos -->
+    <div id="video-container"></div>
+
+    <!-- Load More button -->
+    <button id="load-more" style="display: none;" onclick="loadMoreVideos()">Load More</button>
+  </div>
+
+  <!-- Link to external JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>

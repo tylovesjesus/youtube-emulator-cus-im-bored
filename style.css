@@ -1,0 +1,160 @@
+/* General styles for body and page setup */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Header Styles */
+  h1 {
+    font-size: 2rem; /* Reduced font size for smaller screens */
+    color: #ff0000;
+    margin-bottom: 5px; /* Reduced margin for better spacing */
+    text-align: center;
+    font-weight: bold;
+    padding-top: 60px; /* Add space for the fixed search bar */
+    margin-top: 50px; /* Added top margin for extra space between title and videos */
+  }
+  
+  /* Centering and styling the search bar and button container */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure the search bar stays on top of other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for visibility */
+  }
+  
+  /* Container for input and button inside the search box */
+  .search-box {
+    display: flex;
+    width: 90%;  /* Make it take 90% of the screen width */
+    max-width: 380px; /* Limit max width for small screens */
+  }
+  
+  /* Input field styles */
+  input[type="text"] {
+    padding: 10px;
+    flex-grow: 1; /* Makes input take up available space */
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+    font-size: 1rem;
+  }
+  
+  /* Button styles (for search button) */
+  button {
+    padding: 10px 15px;
+    background-color: #ff0000; /* Red color for both buttons */
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    width: auto;
+    max-width: 130px; /* Reduced max width for smaller screens */
+  }
+  
+  button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+  }
+  
+  button:active {
+    background-color: #990000; /* Even darker red on active click */
+  }
+  
+  /* Main Content Container to avoid being covered by fixed elements */
+  .main-content {
+    margin-top: 10px; /* Space to push the content below the fixed header */
+    width: 100%;
+    max-width: 400px; /* Limit the width of the content */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+  }
+  
+  /* Video Container */
+  #video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px; /* Reduced gap between videos */
+  }
+  
+  iframe {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Match iframe width to the "Load More" button */
+    height: 225px; /* Maintain 16:9 aspect ratio */
+  }
+  
+  #load-more {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff0000; /* Red color for Load More button */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;  /* Make Load More button take the same width */
+    max-width: 400px;  /* Limit the width */
+    transition: background-color 0.3s ease;
+  }
+  
+  #load-more:hover {
+    background-color: #cc0000; /* Darker red on hover */
+  }
+  
+  #load-more:active {
+    background-color: #990000; /* Even darker red on active click */
+  }
+  
+  /* Media Query for smaller screens with specific dimensions (430x932) */
+  @media (max-width: 430px) {
+    .search-container {
+      flex-direction: column; /* Stack the input, search button, and load more vertically */
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .search-box {
+      width: 100%;
+      max-width: 380px; /* Ensure the search box fits */
+    }
+  
+    input[type="text"], button, #load-more {
+      width: 100%;  /* Ensure all elements stretch to full width */
+      margin-top: 10px;
+    }
+  
+    iframe {
+      max-width: 380px; /* Match iframe width to the "Load More" button */
+    }
+  
+    #video-container {
+      gap: 8px; /* Adjust gap between videos */
+    }
+  
+    h1 {
+      font-size: 1.8rem; /* Slightly smaller title for better fitting */
+      padding-top: 40px; /* Reduce the space at the top for better layout */
+    }
+  }
+  
