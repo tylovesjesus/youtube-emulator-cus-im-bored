@@ -4,6 +4,8 @@ let searchQuery = '';    // The current search query
 
 // Function to search YouTube API and retrieve video details
 async function searchVideos() {
+  const videoContainer = document.getElementById('video-container');
+  videoContainer.innerHTML = '';  // Clear any previous videos embedded
   searchQuery = document.getElementById('search-query').value;  // Get the search query from input
   if (!searchQuery) {
     alert("Please enter a search term.");
@@ -37,7 +39,7 @@ async function searchVideos() {
 // Function to embed multiple videos using iframe
 function embedVideos(videos) {
   const videoContainer = document.getElementById('video-container');
-//  videoContainer.innerHTML = '';  // Clear any previous videos embedded
+
 
   // Loop through the video results and create an iframe for each video
   videos.forEach(video => {
